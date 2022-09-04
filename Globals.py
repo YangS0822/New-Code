@@ -280,8 +280,16 @@ def calculate_N250(first_epoch, second_epoch):
     return result_dict
 
 def save_time_series(epochs, target = 'JoeFace'):
+    '''
+    
+    input : an epoch instance
+    output : a csv file of N250 amplitude in each 
+
+    '''
     target_epochs = epochs[target]
     cropped_target_epochs = target_epochs.crop(N250_RANGE[0], N250_RANGE[1]).get_data()
+    os.mkdir(target)
+    os.chdir(target)
     with open('Time_Series.csv', mode= 'w', newline= '') as csv_file:
         csv_write = csv.writer(csv_file)
         for epochs_id, n250_window in zip(target_epochs.selection, cropped_target_epochs):
