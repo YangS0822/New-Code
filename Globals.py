@@ -284,7 +284,7 @@ def get_n250_time_series(epoch, type = 'JoeFace'):
     target_epoch = epoch['JoeFace']
     cropped_target_epochs = target_epoch.crop(N250_RANGE[0], N250_RANGE[1]).to_data_frame()
     for epoch in cropped_target_epochs.epoch.value_counts().index:
-        single_epoch_for_N250 = cropped_target_epochs[cropped_target_epochs['epoch'] == epoch][['TP10','P8','P10','PO8','PO10','O2','TP9','P7', 'P9','PO7','PO9','O1']].mean()
+        single_epoch_for_N250 = cropped_target_epochs[cropped_target_epochs['epoch'] == epoch][['TP10','P8','PO8','O2','TP9','P7','PO7','O1']].mean()
         N250_TS_dict[epoch] = single_epoch_for_N250
     Sub_N250_TS = pd.DataFrame(N250_TS_dict).T.sort_index()
     Sub_N250_TS['Right_Avg'] = (Sub_N250_TS['PO8'] + Sub_N250_TS['P8'] + Sub_N250_TS['TP10'] + Sub_N250_TS['O2'])/4
