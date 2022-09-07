@@ -10,7 +10,8 @@ N170_RANGE = [0,13, 0.21]
 
 N170_Channel = ['P7','PO7','P8','PO8']
 
-
+HEMISPHERES = {'left': ['TP9', 'P7', 'PO7',  'O1'],
+               'right': ['TP10', 'P8', 'PO8' , 'O2']}
 
 condition_list = ['OtherFace_1',
  'OtherFace_2',
@@ -43,8 +44,7 @@ Sublist_exp2_excluded = ['1','3','4','5','6','7','8']
 exp2_bad = {'5' : 'AF8', '6' : 'AF8', '7' : 'AF8','8':['AF8','C2']}
 
 
-HEMISPHERES = {'left': ['TP9', 'P7', 'PO7',  'O1'],
-               'right': ['TP10', 'P8', 'PO8' , 'O2']}
+
 
 eventdict_1 = {
     'OtherFace_1': 10,
