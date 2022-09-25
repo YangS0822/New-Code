@@ -308,7 +308,7 @@ def Calculate_latency_and_amplitude(type, data):
         N170_amplitude_dict = {}
         N170_latency_dict = {}
         for ch in N170_Channel:
-            data_in_window = data.iloc[330:411,:]
+            data_in_window = data.iloc[310:391,:]
             latency = data_in_window.loc[data_in_window[ch].idxmin()][0]
             Amplitude = data_in_window[ch].min()
             N170_amplitude_dict[ch] = Amplitude
@@ -326,3 +326,19 @@ def Calculate_latency_and_amplitude(type, data):
             N250_amplitude_dict[ch] = Amplitude
         return N250_amplitude_dict
 
+
+def get_rt_time(events):
+
+    '''
+    input: events from raw annotations
+    output: a list of reaction time
+    '''
+
+    reaction_time_list = []
+    events_df = pd.DataFrame(events,columns= ['Time','Filler','Marker'])
+    for line in events_df.index:
+        if events_df.iloc[line,2] == 1:
+            reaction_time = (events_df.iloc[line,0] - events_df.iloc[line-1, 0]) - 1000
+            reaction_time_list.append(reaction_time)
+    
+    return reaction_time_list
