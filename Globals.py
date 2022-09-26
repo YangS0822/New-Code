@@ -5,8 +5,9 @@ import numpy as np
 import csv
 
 MAX_PEAK2PEAK = 100e-6
-N250_RANGE = [0.23, 0.32]
-N170_RANGE = [0,13, 0.21]
+N250_RANGE = [0.23, 0.32] # 实验一
+N250_RANGE_EXP2 = [0.21, 0.26] # 实验二
+N170_RANGE = [0.11, 0.19]
 
 N170_Channel = ['P7','PO7','P8','PO8']
 
@@ -39,8 +40,8 @@ Sublist_exp1 = ['1','2','5','6','8','9','10','11','12','13','14','15','17','18',
     '31','32','33','34','35','37','38','39','40']
 
 
-Sublist_exp2_ica = ['1','2','3','4','5','6','7','8','10','11','12','13']
-Sublist_exp2 = ['1','3','4','5','6','7','8','10','11','12','13']
+Sublist_exp2_ica = ['1','2','3','4','5','6','7','8','10','11','12','13','14','15','16','17']
+Sublist_exp2 = ['1','3','4','5','7','8','11','12','13','15','17']
 exp2_bad = {
     '5' : 'AF8', 
     '6' : 'AF8', 
@@ -49,7 +50,10 @@ exp2_bad = {
     '10':['AF8', 'C2'],
     '11':['O2', 'CPz','AF8'],
     '12':['AF8','C2'],
-    '13':['P2', 'CPz', 'AF8', 'AF4']  
+    '13':['P2', 'CPz', 'AF8', 'AF4'],
+    '14':['P2','CPz','FT8','AF8','AF4','TP8'],
+    '16':['AF8','AF4'],
+    '17':['AF8', 'TP10']
     }
 
 
@@ -317,11 +321,11 @@ def Calculate_latency_and_amplitude(type, data):
     elif type == 'N250':
         N250_amplitude_dict = {}
         for ch in HEMISPHERES['left']:
-            data_in_window = data.iloc[430:521,:]
+            data_in_window = data.iloc[410:460,:]
             Amplitude = data_in_window[ch].mean()
             N250_amplitude_dict[ch] = Amplitude
         for ch in HEMISPHERES['right']:
-            N250_data = data.iloc[430:521,:]
+            N250_data = data.iloc[410:460,:]
             Amplitude = N250_data[ch].mean()
             N250_amplitude_dict[ch] = Amplitude
         return N250_amplitude_dict
